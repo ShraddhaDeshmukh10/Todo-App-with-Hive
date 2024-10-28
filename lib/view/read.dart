@@ -23,6 +23,13 @@ class _Read_AppState extends State<Read_App> {
     openBox();
   }
 
+  Future<void> _toggleTaskCompletion(int index, TasksModel task) async {
+    var updatedTask = TasksModel(
+        task: task.task, tasks: task.tasks, isCompleted: !task.isCompleted);
+    await _service.updateDeck(index, updatedTask);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +55,11 @@ class _Read_AppState extends State<Read_App> {
                         var todo = box.getAt(index);
                         return Card(
                           child: ListTile(
+                            leading: Checkbox(
+                                value: todo?.isCompleted == true,
+                                onChanged: (value) {
+                                  _toggleTaskCompletion(index, todo!);
+                                }),
                             trailing: IconButton(
                                 onPressed: () {
                                   _service.deleteModel(index);
