@@ -24,6 +24,13 @@ class _Home_PageState extends State<Home_Page> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    taskController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -57,6 +64,7 @@ class _Home_PageState extends State<Home_Page> {
           ElevatedButton(
               onPressed: () {
                 saveAndPop(context);
+                taskController.clear();
               },
               child: Text("Add")),
         ],
