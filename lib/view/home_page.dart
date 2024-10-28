@@ -46,7 +46,7 @@ class _Home_PageState extends State<Home_Page> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              width: 400,
+              width: 250,
               child: TextField(
                 controller: taskController,
                 decoration: InputDecoration(
